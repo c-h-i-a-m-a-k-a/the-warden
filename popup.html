@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header>
+    <img src="icons/48.png" alt="">
+    <h1>The Warden</h1>
+  </header>
+
+  <!-- Setup -->
+  <form id="setup" hidden>
+    <label class="field">
+      <span class="label">What are you working on?</span>
+      <input id="task" placeholder="Study for my chem final" autocomplete="off" required>
+    </label>
+
+    <label class="field">
+      <span class="label">Motivation <span class="opt">optional</span></span>
+      <input id="motivation" placeholder="Summer break" autocomplete="off">
+      <span class="hint">The warden will use it against you.</span>
+    </label>
+
+    <div class="field">
+      <span class="label">For how long?</span>
+      <div class="duration">
+        <label><input id="hours" type="number" min="0" max="23" value="5"><span>hours</span></label>
+        <label><input id="minutes" type="number" min="0" max="59" value="0"><span>minutes</span></label>
+      </div>
+    </div>
+
+    <div class="sites-row">
+      <div>
+        <span class="label">Distracting sites</span>
+        <span class="sites-summary" id="sitesSummary"></span>
+      </div>
+      <button type="button" class="link" id="editSites">Edit</button>
+    </div>
+
+    <div class="timing">
+      <label><span>Warning after</span><span class="num"><input id="warnAfter" type="number" min="0" value="60"> sec</span></label>
+      <label><span>Warden arrives</span><span class="num"><input id="wardenAfter" type="number" min="1" value="60"> sec later</span></label>
+    </div>
+
+    <button class="primary" type="submit">Start</button>
+  </form>
+
+  <!-- Sites -->
+  <section id="sites" hidden>
+    <div class="sites-head">
+      <button type="button" class="link back" id="sitesDone">‹ Back</button>
+      <span class="sites-title">Distracting sites</span>
+    </div>
+    <ul class="site-list" id="siteList"></ul>
+    <input id="addSite" placeholder="Add a site, like hulu.com" autocomplete="off" spellcheck="false">
+  </section>
+
+  <!-- Running -->
+  <section id="running" hidden>
+    <div class="ring">
+      <svg viewBox="0 0 120 120">
+        <circle class="track" cx="60" cy="60" r="52"/>
+        <circle class="progress" id="progress" cx="60" cy="60" r="52"/>
+      </svg>
+      <div class="ring-text">
+        <div class="elapsed" id="elapsed">0:00:00</div>
+        <div class="goal" id="goal">of 5:00:00</div>
+      </div>
+    </div>
+    <div class="task" id="taskLabel"></div>
+    <div class="status" id="status"></div>
+    <button class="secondary" id="end">End session</button>
+  </section>
+
+  <!-- Done -->
+  <section id="done" hidden>
+    <img class="done-art" src="art/frames/bunny-cheer.png" alt="">
+    <div class="done-title">Your bail has been posted</div>
+    <div class="done-sub" id="doneSub"></div>
+    <button class="primary" id="again">Start another</button>
+  </section>
+
+  <script src="popup.js" type="module"></script>
+</body>
+</html>
